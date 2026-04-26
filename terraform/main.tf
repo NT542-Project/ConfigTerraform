@@ -1,3 +1,8 @@
+resource "aws_key_pair" "this" {
+  key_name   = var.key_pair_name
+  public_key = var.public_key
+}
+
 module "vpc" {
   source = "./modules/vpc"
 
@@ -23,7 +28,9 @@ module "loadbalancer" {
   ami_id             = var.ami_id
   instance_type      = "t3.micro"
   subnet_id          = module.vpc.public_subnet_id
-  
+  key_name           = aws_key_pair.this.key_name
+  security_group_ids = [module.security_group.security_group_id]
+
   extra_tags = {
     Type = "loadbalancer"
   }
@@ -36,7 +43,9 @@ module "apacheserver1" {
   ami_id             = var.ami_id
   instance_type      = "t3.micro"
   subnet_id          = module.vpc.private_subnet_id
-  
+  key_name           = aws_key_pair.this.key_name
+  security_group_ids = [module.security_group.security_group_id]
+
   extra_tags = {
     Type = "apacheserver"
   }
@@ -49,6 +58,8 @@ module "apacheserver2" {
   ami_id             = var.ami_id
   instance_type      = "t3.micro"
   subnet_id          = module.vpc.private_subnet_id
+  key_name           = aws_key_pair.this.key_name
+  security_group_ids = [module.security_group.security_group_id]
 
   extra_tags = {
     Type = "apacheserver"
@@ -62,6 +73,8 @@ module "observabilitystack" {
   ami_id             = var.ami_id
   instance_type      = "t3.small"
   subnet_id          = module.vpc.private_subnet_id
+  key_name           = aws_key_pair.this.key_name
+  security_group_ids = [module.security_group.security_group_id]
 
   extra_tags = {
     Type = "observabilitystack"

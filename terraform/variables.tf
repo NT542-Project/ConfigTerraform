@@ -14,3 +14,15 @@ variable "ami_id" {
   description = "AMI ID to use for all EC2 instances"
   type        = string
 }
+
+variable "key_pair_name" {
+  description = "Name for the AWS key pair"
+  type        = string
+  default     = "ec2-keypair"
+}
+
+variable "public_key" {
+  description = "SSH public key"
+  type        = string
+  sensitive   = true
+}

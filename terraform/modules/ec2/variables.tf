@@ -29,3 +29,9 @@ variable "extra_tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "key_name" {
+  description = "Name of the AWS key pair to attach to the instance"
+  type        = string
+  default     = null
+}
