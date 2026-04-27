@@ -1,0 +1,5 @@
+ami_id        = "ami-xxxxxxxxxxxxxxxxx"
+public_key    = "ssh-rsa AAAA... your public key here"
+# key_pair_name   = "ec2-keypair"
+# aws_region      = "ap-southeast-1"
+# availability_zone = "ap-southeast-1a"
