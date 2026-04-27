@@ -13,12 +13,13 @@ variable "availability_zone" {
 variable "ami_id" {
   description = "AMI ID to use for all EC2 instances"
   type        = string
+  default     = "ami-0d82255589f4eaca8"
 }
 
 variable "key_pair_name" {
   description = "Name for the AWS key pair"
   type        = string
-  default     = "ec2-keypair"
+  default     = "accesskeyforec2"
 }
 
 variable "public_key" {
